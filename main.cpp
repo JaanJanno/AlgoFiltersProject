@@ -3,14 +3,17 @@
 #include "noFilter.h"
 #include "bloom.h"
 
+#include <inttypes.h>
 #include <iostream>
 #include <chrono>
 #include <cstdlib>
 #include <random>
 #include <time.h>
-#include <inttypes.h>
 
 #define TEST_NUM 10000
+
+#define BLOOM_TABLE_SIZE 1024
+#define BLOOM_HASH_COUNT 16
 
 Hash generateHash(){
 	return (uint64_t)rand() << 32 | rand();
@@ -59,7 +62,7 @@ int main() {
 	
 	// Create 3 filters
 	Filter *f1 = new NoFilter();
-	Filter *f2 = new Bloom();
+	Filter *f2 = new Bloom(BLOOM_TABLE_SIZE, BLOOM_HASH_COUNT);
 	Filter *f3 = new Cuckoo();
 
 	// Test no filter
