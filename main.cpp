@@ -8,14 +8,12 @@
 #include <cstdlib>
 #include <random>
 #include <time.h>
+#include <inttypes.h>
 
 #define TEST_NUM 10000
 
 Hash generateHash(){
-	if (sizeof(int) < sizeof(long)) {
-		return (static_cast<long>(std::rand()) << (sizeof(int) * 8)) | std::rand();
-	}
-	return std::rand();
+	return (uint64_t)rand() << 32 | rand();
 }
 
 void generateHashes(Hash *array) {

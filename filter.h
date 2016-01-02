@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>
 
-typedef long Hash;
+typedef uint64_t Hash;
 
 class Filter {
 public:

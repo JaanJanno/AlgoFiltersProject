@@ -1,4 +1,5 @@
 #include "bloom.h"
+#include "hashing.h"
 
 Bloom::Bloom(){
 

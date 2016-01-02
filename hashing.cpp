@@ -1,11 +1,11 @@
 #include "hashing.h"
 #include <random>
 
-long HashFunction::random() {
-	return (long)rand() << 32 | rand();
+uint64_t HashFunction::random() {
+	return (uint64_t)rand() << 32 | rand();
 }
 
-HashFunction::HashFunction(long w) {
+HashFunction::HashFunction(uint64_t w) {
 	maximum = w;
 	a = 1 + random() % (prime - 1);
 	b = random() % prime;
@@ -15,6 +15,6 @@ HashFunction::~HashFunction() {
 
 }
 
-long HashFunction::hash(long number) {
+uint64_t HashFunction::hash(uint64_t number) {
 	return (number * a + b) % prime % maximum;
 }
