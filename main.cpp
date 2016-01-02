@@ -6,6 +6,8 @@
 #include <ctime>
 #include <iostream>
 #include <cstdlib>
+#include <random>
+#include <time.h>
 
 #define TEST_NUM 10000
 
@@ -48,6 +50,8 @@ double test(Filter *f) {
 }
 
 int main() {
+	srand(time(0));
+	
 	// Create 3 filters
 	Filter *f1 = new NoFilter();
 	Filter *f2 = new Bloom();

@@ -1,7 +1,7 @@
 CC=g++
-CFLAGS=-c
+CFLAGS=-c -std=c++11 
 LDFLAGS=
-SOURCES=main.cpp cuckoo.cpp bloom.cpp noFilter.cpp
+SOURCES=main.cpp cuckoo.cpp bloom.cpp noFilter.cpp hashing.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXE=program
 
