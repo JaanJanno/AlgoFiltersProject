@@ -3,8 +3,8 @@
 #include "noFilter.h"
 #include "bloom.h"
 
-#include <ctime>
 #include <iostream>
+#include <chrono>
 #include <cstdlib>
 #include <random>
 #include <time.h>
@@ -24,7 +24,14 @@ void generateHashes(Hash *array) {
 	}
 }
 
-double test(Filter *f) {
+long getTime() {
+	std::chrono::milliseconds t = std::chrono::duration_cast< std::chrono::milliseconds >(
+    	std::chrono::system_clock::now().time_since_epoch()
+		);
+	return t.count();
+}
+
+long test(Filter *f) {
 	std::cout << "Generating hash array" << std::endl;
 
 	// Generate hash array
@@ -34,8 +41,7 @@ double test(Filter *f) {
 	std::cout << "Running algorithm" << std::endl;
 
 	// Start clock
-	std::clock_t start;
-	start = std::clock();
+	long start = getTime();
 
 	// Run algorithm
 	for (int i = 0; i < TEST_NUM; ++i) {
@@ -46,7 +52,8 @@ double test(Filter *f) {
 	}
 
 	// Stop clock and calculate time
-	return (double)(std::clock() - start);
+	long end = getTime();
+	return (end - start);
 }
 
 int main() {
@@ -58,14 +65,14 @@ int main() {
 	Filter *f3 = new Cuckoo();
 
 	// Test no filter
-	double time1 = test(f1);
+	long time1 = test(f1);
 	std::cout << "No filter test with " << TEST_NUM << " values: " << time1 << " ms" << std::endl;
 
 	// Test bloom filter
-	double time2 = test(f2);
+	long time2 = test(f2);
 	std::cout << "Bloom filter test with " << TEST_NUM << " values: " << time2 << " ms" << std::endl;
 
 	// Test cuckoo filter
-	double time3 = test(f3);
+	long time3 = test(f3);
 	std::cout << "Cuckoo filter test with " << TEST_NUM << " values: " << time3 << " ms" << std::endl;
 }
