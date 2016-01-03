@@ -1,6 +1,8 @@
 #ifndef HASHING_H
 #define HASHING_H
 
+#include <stdint.h>
+
 // The required hash functions are described as this class.
 class HashFunction {
 private:

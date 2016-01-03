@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <random>
 #include <time.h>
+#include <stdint.h>
 
 #define TEST_NUM 10000
 
