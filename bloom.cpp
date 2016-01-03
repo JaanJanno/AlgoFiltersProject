@@ -31,7 +31,11 @@ bool Bloom::lookUp(Hash hash){
 		if(!getBit(table, position))
 			return false;
 	}
-	return true;	
+
+	if(std::find(array.begin(), array.end(), hash) != array.end()) {
+		return true;
+	}
+	return false;	
 }
 
 void Bloom::insert(Hash hash){
@@ -39,4 +43,5 @@ void Bloom::insert(Hash hash){
 		uint64_t position = hashes[i]->hash(hash);
 		setBit(table, position);
 	}
+	array.push_back(hash);
 }
