@@ -7,7 +7,7 @@
 class Cuckoo : public Filter
 {
 private:
-	uint64_t hashCount, tableSize;
+	uint64_t hashCount, tableSize, maxNumKicks;
 	uint64_t* table;
 	HashFunction** hashes;
 public:
@@ -21,7 +21,7 @@ public:
 
 	bool lookUp(Hash hash);
 
-	bool insert(Hash hash);
+	void insert(Hash hash);
 };
 
 #endif

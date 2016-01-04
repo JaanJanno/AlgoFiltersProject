@@ -40,34 +40,34 @@ bool Cuckoo::lookUp(Hash hash){
     return false;
 }
 
-bool Cuckoo::insert(Hash hash){
+void Cuckoo::insert(Hash hash){
     uint64_t f = fingerprint(hash);
     uint64_t position1 = hash(hash);
     uint64_t position2 = position1 xor hash(f);
 
     if(hashes[position1] == nullptr) {
         hashes[position1] = f;
-        return true;
+        return;
     }
 
     if(hashes[position2] == nullptr) {
         hashes[position2] = f;
-        return true;
+        return;
     }
 
-    position = chooseRandomly(position1, position2);
+    uint64_t position = chooseRandomly(position1, position2);
     for(int i = 0; i < maxNumKicks; i++) {
         uint64_t entry = hashes[position];
         hashes[position] = f;
         position = position xor hash(f);
 
-        if(hash[position] == nullptr) {
-            hash[position] = f;
-            return true;
+        if(hashes[position] == nullptr) {
+            hashes[position] = f;
+            return;
         }
     }
     // too full
-    return false;
+    return;
 
 }
 
