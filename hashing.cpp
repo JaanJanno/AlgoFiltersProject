@@ -1,6 +1,5 @@
 #include "hashing.h"
 #include <random>
-#include <cmath>
 
 uint64_t HashFunction::random() {
 	return (uint64_t)rand() << 32 | rand();
@@ -21,13 +20,6 @@ uint64_t HashFunction::hash(uint64_t number) {
 }
 
 // 2nd hash function for Cuckoo filter
-
 uint64_t HashFunction::hash2(uint64_t number) {
 	return number % hash2_const;
-}
-
-// 3rd hash function for Cuckoo filter
-
-uint64_t HashFunction::hash3(uint64_t number) {
-	return (floor(number % hash2_const)) % hash2_const;
 }

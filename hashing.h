@@ -13,8 +13,6 @@ public:
     uint64_t hash(uint64_t number);
 // 2nd hash function for Cuckoo filter
     uint64_t hash2(uint64_t number);
-// 3rd hash function for Cuckoo filter
-    uint64_t hash3(uint64_t number);
 };
 
 #endif
