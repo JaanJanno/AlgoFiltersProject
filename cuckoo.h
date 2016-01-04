@@ -10,9 +10,11 @@ public:
 	Cuckoo();
 	~Cuckoo();
 
+    void rehash(Hash hash);
+
 	bool lookUp(Hash hash);
 
-	void insert(Hash hash);
+	bool insert(Hash hash);
 };
 
 #endif
