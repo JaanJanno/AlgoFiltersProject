@@ -31,7 +31,7 @@ bool Bloom::lookUp(Hash hash){
 		if(!getBit(table, position))
 			return false;
 	}
-
+	
 	if(std::find(array.begin(), array.end(), hash) != array.end()) {
 		return true;
 	}

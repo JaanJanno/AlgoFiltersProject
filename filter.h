@@ -4,6 +4,8 @@
 #include <vector>
 #include <algorithm>
 
+#include "bst.h"
+
 typedef uint64_t Hash;
 
 class Filter {
@@ -17,6 +19,8 @@ public:
 	virtual void insert(Hash hash) = 0;
 
 	std::vector<Hash> array;
+	BST bst {0};
+
 };
 
 #endif

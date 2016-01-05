@@ -1,4 +1,5 @@
 #include "cuckoo.h"
+#include <iostream>
 
 #define CUCKOO_KICK_COUNT 100
 
@@ -92,6 +93,7 @@ void Cuckoo::insert(Hash hash){
 	uint64_t h = rand()&1 ? h1 : h2;
 
 	for(int i = 0; i < CUCKOO_KICK_COUNT; i++) {
+		std::cout << "SIIN"; 
 		char e = table[(h * bucketCount + rand() % bucketCount)];
 
 		uint64_t swap = f;

@@ -2,6 +2,7 @@
 #include "cuckoo.h"
 #include "noFilter.h"
 #include "bloom.h"
+#include "bst.h"
 
 #include <inttypes.h>
 #include <iostream>
@@ -11,13 +12,13 @@
 #include <time.h>
 #include <stdint.h>
 
-#define TEST_NUM 10000
+#define TEST_NUM 200000
 
-#define BLOOM_TABLE_SIZE 1024
+#define BLOOM_TABLE_SIZE 10240000
 #define BLOOM_HASH_COUNT 16
 
-#define CUCKOO_TABLE_SIZE 2
-#define CUCKOO_BUCKET_COUNT 2
+#define CUCKOO_TABLE_SIZE 10240000
+#define CUCKOO_BUCKET_COUNT 8
 
 Hash generateHash(){
 	return (uint64_t)rand() << 32 | rand();
