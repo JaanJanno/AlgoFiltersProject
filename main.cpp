@@ -16,6 +16,9 @@
 #define BLOOM_TABLE_SIZE 1024
 #define BLOOM_HASH_COUNT 16
 
+#define CUCKOO_TABLE_SIZE 2
+#define CUCKOO_BUCKET_COUNT 2
+
 Hash generateHash(){
 	return (uint64_t)rand() << 32 | rand();
 }
@@ -64,7 +67,7 @@ int main() {
 	// Create 3 filters
 	Filter *f1 = new NoFilter();
 	Filter *f2 = new Bloom(BLOOM_TABLE_SIZE, BLOOM_HASH_COUNT);
-	Filter *f3 = new Cuckoo();
+	Filter *f3 = new Cuckoo(CUCKOO_TABLE_SIZE, CUCKOO_BUCKET_COUNT);
 
 	// Test no filter
 	long time1 = test(f1);
