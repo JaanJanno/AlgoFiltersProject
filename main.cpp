@@ -12,16 +12,16 @@
 #include <time.h>
 #include <stdint.h>
 
-#define TEST_NUM 200000
+#define TEST_NUM 500000
 
-#define BLOOM_TABLE_SIZE 10240000
-#define BLOOM_HASH_COUNT 16
+#define BLOOM_TABLE_SIZE 102400
+#define BLOOM_HASH_COUNT 8
 
-#define CUCKOO_TABLE_SIZE 10240000
+#define CUCKOO_TABLE_SIZE 102400
 #define CUCKOO_BUCKET_COUNT 8
 
 Hash generateHash(){
-	return (uint64_t)rand() << 32 | rand();
+	return rand() % TEST_NUM;
 }
 
 void generateHashes(Hash *array) {

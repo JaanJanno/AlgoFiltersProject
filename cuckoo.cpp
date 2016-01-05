@@ -1,5 +1,4 @@
 #include "cuckoo.h"
-#include <iostream>
 
 #define CUCKOO_KICK_COUNT 100
 
@@ -55,14 +54,14 @@ bool Cuckoo::lookUp(Hash hash){
 
 	if(elemInBucket(f, h1)) {
 
-		if(std::find(array.begin(), array.end(), hash) != array.end()) {
+		if(bst.lookUp(hash)) {
 			return true;
 		}
 		return false;	
 	}
 	else if(elemInBucket(f, h2)) {
 
-		if(std::find(array.begin(), array.end(), hash) != array.end()) {
+		if(bst.lookUp(hash)) {
 			return true;
 		}
 		return false;	
@@ -82,18 +81,17 @@ void Cuckoo::insert(Hash hash){
 		return;
 
 	if(elemToBucket(f, h1)) {
-		array.push_back(hash);
+		bst.insert(hash);
 		return;
 	}
 	if(elemToBucket(f, h2)) {
-		array.push_back(hash);
+		bst.insert(hash);
 		return;
 	}
 
 	uint64_t h = rand()&1 ? h1 : h2;
 
 	for(int i = 0; i < CUCKOO_KICK_COUNT; i++) {
-		std::cout << "SIIN"; 
 		char e = table[(h * bucketCount + rand() % bucketCount)];
 
 		uint64_t swap = f;
@@ -102,7 +100,7 @@ void Cuckoo::insert(Hash hash){
 		h = h xor hash1(f);
 
 		if(elemToBucket(f, h)) {
-			array.push_back(hash);
+			bst.insert(hash);
 			return;
 		}
 	}
