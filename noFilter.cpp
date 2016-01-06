@@ -8,9 +8,9 @@ NoFilter::~NoFilter(){
 }
 
 bool NoFilter::lookUp(Hash hash){
-	return bst.lookUp(hash);
+	return std::find(array.begin(), array.end(), hash) != array.end();
 }
 
 void NoFilter::insert(Hash hash){
-	bst.insert(hash);
+	array.push_back(hash);
 }

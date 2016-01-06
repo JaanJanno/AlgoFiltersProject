@@ -18,10 +18,10 @@
 #define CUCKOO_TABLE_SIZE 1024000
 #define CUCKOO_BUCKET_COUNT 8
 
-static int TEST_NUM=1000000;
+static int TEST_NUM=200000;
 
 Hash generateHash(){
-	return rand() % TEST_NUM;
+	return rand();
 }
 
 void generateHashes(Hash *array) {
@@ -65,13 +65,13 @@ int main() {
 	Filter *f1 = new NoFilter();
 
 	Filter *f2 = new Bloom(BLOOM_TABLE_SIZE, BLOOM_HASH_COUNT);
-	Filter *f3 = new Bloom(BLOOM_TABLE_SIZE, 1);
+	//Filter *f3 = new Bloom(BLOOM_TABLE_SIZE, 1);
 
 	Filter *f4 = new Cuckoo(CUCKOO_TABLE_SIZE, CUCKOO_BUCKET_COUNT);
 
-	std::cout << "size,noFilter,Bloom,Bloom1Hash,Cuckoo" << std::endl;
-	while(TEST_NUM > 50000) {
-		std::cout << TEST_NUM << ',' << test(f1, hashes) << ',' << test(f2, hashes) << ',' << test(f3, hashes) << ',' << test(f4, hashes) << std::endl;
+	std::cout << "size,noFilter,Bloom,Cuckoo" << std::endl;
+	while(TEST_NUM > 1000) {
+		std::cout << TEST_NUM << ',' << test(f1, hashes) << ',' << test(f2, hashes) << ',' << test(f4, hashes) << std::endl;
 		TEST_NUM /= 2;
 	}
 	/*
